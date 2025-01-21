@@ -4,17 +4,17 @@ import meetingImage from "../../public/meeting.jpg";
 
 export default function TestimonialCard() {
   return (
-    <div className="flex justify-center items-center min-h-screen bg-[#f7f9fc]">
-      <div className="bg-white shadow-lg rounded-xl overflow-hidden max-w-4xl">
-        <div className="relative">
+    <div className="container mx-auto flex justify-center items-center min-[300px] bg-[#f7f9fc] absolute py-6 px-6">
+      <div className="bg-white shadow-lg rounded-xl overflow-hidden ">
+        <div className="relative w-full h-80">
           {/* Background Image */}
-          <div className="absolute inset-0 bg-blue-900 bg-opacity-70 z-10"></div>
+          <div className="absolute inset-0 bg-blue-900 bg-opacity-70 z-10 w-[800px]"></div>
           <Image
             src={meetingImage}
             alt="Team Discussion"
             width={1200}
             height={500}
-            className="object-cover w-full h-80"
+            className="object-cover w-full h-80 relative"
           />
         </div>
         <div className="absolute inset-0 z-20 flex items-center justify-center p-8 text-center text-white">

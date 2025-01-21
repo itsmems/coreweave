@@ -4,6 +4,10 @@ import {
   Code,
   TvMinimal,
   MonitorPlay,
+  Twitter,
+  Facebook,
+  Linkedin,
+  Instagram,
 } from "lucide-react";
 
 export const icons = {
@@ -12,4 +16,8 @@ export const icons = {
   code: Code,
   tvMinimal: TvMinimal,
   monitorPlay: MonitorPlay,
+  twitter: Twitter,
+  facebook: Facebook,
+  linkedin: Linkedin,
+  instagram: Instagram,
 };
