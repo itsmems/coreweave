@@ -1,32 +1,88 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
-import React from "react";
-import Image7 from "../../public/img7.jpg";
+import image from "../../public/img6.jpeg";
 
-const Categories = () => {
+export default function Home() {
+  const tabs = ["Web Development", "App Development", "Digital Marketing"];
+  const cards = [
+    {
+      title: "E-commerce Platform",
+      category: "Web Development",
+      image: "/img6.jpeg",
+    },
+    {
+      title: "Corporate Website",
+      category: "Digital Marketing",
+      image: "/img4.jpg",
+    },
+    {
+      title: "Responsive Web Design",
+      category: "Web Development",
+      image: "/img6.jpg",
+    },
+    {
+      title: "User Experience Enhancement",
+      category: "App Development",
+      image: "/img7.jpg",
+    },
+  ];
+
+  const [activeTab, setActiveTab] = useState("Web Development");
+
+  const filteredCards =
+    activeTab === "Web Development"
+      ? cards
+      : cards.filter((card) => card.category === activeTab);
+
   return (
-    <>
-      <section className="w-full bg-[#FEFFFE] py-8">
-        <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {Array(4)
-            .fill("")
-            .map((_, index) => (
-              <div key={index} className="relative group hover:cursor-pointer">
-                <Image
-                  src={Image7}
-                  alt="E-commerce Platform"
-                  width={350}
-                  height={250}
-                  className="rounded-md transition-transform duration-300 ease-in-out transform group-hover:scale-105 hover:bg-black hover:bg-opacity-50"
-                />
-                <h2 className="absolute bottom-0 left-0 ml-2 mb-2 text-xl font-semibold text-white bg-black bg-opacity-50 px-2 py-1 rounded transition-opacity duration-300 ease-in-out group-hover:opacity-100 group-hover:bg-opacity-70">
-                  E-commerce Platform
-                </h2>
-              </div>
-            ))}
+    <div className="min-h-screen bg-gray-100 pt-16">
+      <div className="container mx-auto">
+        <div className="flex space-x-4 mb-6">
+          {tabs.map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 ${
+                activeTab === tab
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+              }`}
+            >
+              {tab}
+            </button>
+          ))}
         </div>
-      </section>
-    </>
-  );
-};
 
-export default Categories;
+        {/* Cards with Animation */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {filteredCards.map((card, index) => (
+            <div
+              key={index}
+              className="relative overflow-hidden bg-white rounded-lg shadow-md h-80 group"
+            >
+              <Image
+                src={card.image}
+                alt={card.title}
+                className="object-cover h-80 w-80 transform transition duration-300 group-hover:scale-105"
+                fill
+              />
+              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-55 transition duration-300"></div>
+
+              {/* Text Content */}
+              <div className="absolute bottom-4 left-4 flex gap-2">
+                <h3 className="text-xl font-semibold text-white">
+                  {card.title}
+                </h3>
+                <span className="px-2 py-1 text-sm font-medium text-white bg-slate-400 rounded">
+                  {card.category}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
