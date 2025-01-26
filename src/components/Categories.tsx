@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import image from "../../public/img6.jpeg";
 
 export default function Home() {
   const tabs = ["Web Development", "App Development", "Digital Marketing"];
