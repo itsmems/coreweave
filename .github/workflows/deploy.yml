@@ -59,4 +59,4 @@ jobs:
 
 
            # Run the new container
-           docker run -d --name coreweave -p 4000:4000 itsmems/coreweave:latest
+           docker run -d --name coreweave -p 3002:3002 itsmems/coreweave:latest
