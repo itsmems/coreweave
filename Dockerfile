@@ -23,11 +23,11 @@ RUN yarn run build
 
 
 # Set the environment variable for the port
-ENV PORT=3002
+ENV PORT=3001
 
 
 # Expose port 3002 to the host
-EXPOSE 3002
+EXPOSE 3001
 
 
 # Set the default command to start the Next.js app
