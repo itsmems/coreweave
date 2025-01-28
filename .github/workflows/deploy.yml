@@ -1,41 +1,62 @@
-name: Deploy Next.js App to VPS
+name: Build and Deploy coreweave
+
 
 on:
-  push:
-    branches:
-      - main
+ push:
+   branches:
+     - main # Trigger on push to main branch
+
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
+ build:
+   runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
+   steps:
+     # Checkout the repository
+     - name: Checkout code
+       uses: actions/checkout@v3
 
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKER_HUB_USERNAME }}
-          password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          push: true
-          tags: your-dockerhub-username/nextjs-app:latest
+     # Set up Docker Buildx
+     - name: Set up Docker Buildx
+       uses: docker/setup-buildx-action@v2
 
-      - name: Deploy to VPS
-        uses: appleboy/ssh-action@v1
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USERNAME }}
-          key: ${{ secrets.VPS_SSH_KEY }}
-          script: |
-            docker pull your-dockerhub-username/nextjs-app:latest
-            docker-compose down
-            docker-compose up -d
+
+     # Log in to Docker Hub
+     - name: Log in to Docker Hub
+       uses: docker/login-action@v2
+       with:
+         username: ${{ secrets.DOCKER_USERNAME }}
+         password: ${{ secrets.DOCKER_TOKEN }}
+
+
+     # Build and push Docker image
+     - name: Build and push Docker image
+       uses: docker/build-push-action@v4
+       with:
+         context: .
+         push: true
+         tags: itsmems/coreweave:latest, itsmems/coreweave:${{ github.sha }}
+
+
+     # Deploy to VPS via SSH
+     - name: Deploy to VPS
+       uses: appleboy/ssh-action@v0.1.7
+       with:
+         host: ${{ secrets.HOST }}
+         username: ${{ secrets.USERNAME }}
+         key: ${{ secrets.SSH_PRIVATE_KEY }}
+         port: 22
+         script: |
+           # Pull the latest Docker image
+           docker pull itsmems/coreweave:latest
+
+
+           # Stop and remove the existing container
+           docker stop coreweave || true
+           docker rm coreweave || true
+
+
+           # Run the new container
+           docker run -d --name coreweave -p 4000:4000 itsmems/coreweave:latest
