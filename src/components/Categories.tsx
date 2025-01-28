@@ -38,7 +38,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gray-100 pt-16">
       <div className="container mx-auto">
-        <div className="flex space-x-4 mb-6">
+        <div className="flex md:space-x-4 space-x-2   mb-6 mx-4">
           {tabs.map((tab) => (
             <button
               key={tab}
@@ -55,7 +55,7 @@ export default function Home() {
         </div>
 
         {/* Cards with Animation */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-4">
           {filteredCards.map((card, index) => (
             <div
               key={index}
@@ -74,9 +74,9 @@ export default function Home() {
                 <h3 className="text-xl font-semibold text-white">
                   {card.title}
                 </h3>
-                <span className="px-2 py-1 text-sm font-medium text-white bg-slate-400 rounded">
-                  {card.category}
-                </span>
+                <div className="px-2 py-1 text-sm font-medium text-white bg-slate-400 rounded backdrop-sepia">
+                  <span className="backdrop-sepia">{card.category}</span>
+                </div>
               </div>
             </div>
           ))}

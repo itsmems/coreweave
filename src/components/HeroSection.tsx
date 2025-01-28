@@ -5,8 +5,8 @@ const HeroSection = () => {
   return (
     <section className="bg-gradient-to-r from-slate-100  to-[#B8D1F4]">
       <section className="container mx-auto px-4 py-6 w-full h-[850px]">
-        <div className="py-56 px-9 w-2/4">
-          <h1 className="text-black font-bold text-7xl mb-4">
+        <div className="md:py-24 px-9 md:w-2/4">
+          <h1 className="text-black font-bold text-5xl md:text-7xl mb-4">
             Empowering Digital Transformation
           </h1>
           <span className="text-black text-xl py-4 font-sans tracking-wide ">

@@ -2,12 +2,38 @@ import React from "react";
 import { icons } from "../app/icons";
 
 const OurServices = () => {
+  const ourServices = [
+    {
+      title: "Web Development",
+      description:
+        "Utilize our expertise to build robust and scalable web solutions tailored to your business needs.",
+      icon: <icons.code />,
+    },
+    {
+      title: "App Development",
+      description:
+        "Utilize our expertise to build robust and scalable web solutions tailored to your business needs.",
+      icon: <icons.code />,
+    },
+    {
+      title: "Digital Marketing Development",
+      description:
+        "Utilize our expertise to build robust and scalable web solutions tailored to your business needs.",
+      icon: <icons.tvMinimal />,
+    },
+    {
+      title: "UI/UX Development",
+      description:
+        "Utilize our expertise to build robust and scalable web solutions tailored to your business needs.",
+      icon: <icons.monitorPlay />,
+    },
+  ];
   return (
     <>
-      <section className="bg-[#022B71] w-full h-[800px]">
-        <div className="container mx-auto py-20 px-6 justify-between flex">
-          <div className="w-2/4">
-            <h2 className="text-7xl font-semibold mb-4">
+      <section className="bg-[#022B71] w-full lg:h-[800px] ">
+        <div className="container mx-auto py-16 px-6 md:justify-between flex flex-col lg:flex-row">
+          <div className="lg:w-2/4">
+            <h2 className="md:text-7xl text-5xl font-semibold mb-4">
               Pioneering Digital Excellence
             </h2>
             <p className="font-thin">
@@ -21,39 +47,17 @@ const OurServices = () => {
               <icons.arrowRight />
             </button>
           </div>
-          <div className="grid grid-cols-2 gap-4 p-6">
-            <div className="border-1 bg-inherit hover:bg-[#050e1f] flex flex-col h-[300px] w-[250px] rounded-md p-4 space-y-4 mt-6 px-8">
-              <icons.code />
-              <span className="text-2xl">Web Development</span>
-              <p className="text-bg">
-                Utilize our expertise to build robust and scalable web solutions
-                tailored to your business needs.
-              </p>
-            </div>
-            <div className="border-1 bg-inherit hover:bg-[#050e1f] flex flex-col h-[300px] w-[250px] rounded-md p-4 space-y-4 mt-6 px-8">
-              <icons.smartphone />
-              <span className="text-2xl">App Development</span>
-              <p className="text-bg">
-                Utilize our expertise to build robust and scalable web solutions
-                tailored to your business needs.
-              </p>
-            </div>
-            <div className="border-1 bg-inherit hover:bg-[#050e1f] flex flex-col h-[300px] w-[250px] rounded-md p-4 space-y-4 mt-6 px-8">
-              <icons.tvMinimal />
-              <span className="text-2xl">Digital Marketing Development</span>
-              <p className="text-bg">
-                Utilize our expertise to build robust and scalable web solutions
-                tailored to your business needs.
-              </p>
-            </div>
-            <div className="border-1 bg-inherit hover:bg-[#02060c] flex flex-col h-[300px] w-[250px] rounded-md py-4 space-y-4 mt-6 px-8">
-              <icons.monitorPlay />
-              <span className="text-2xl">UI/UX Development</span>
-              <p className="text-bg">
-                Utilize our expertise to build robust and scalable web solutions
-                tailored to your business needs.
-              </p>
-            </div>
+          <div className="grid md:grid-cols-2 grid-cols-1 gap-4 md:p-6">
+            {ourServices.map((services, index) => (
+              <div
+                key={index}
+                className="shadow-md bg-inherit hover:bg-[#050e1f] flex flex-col lg:h-[300px] lg:w-[250px] rounded-md p-4 space-y-4 mt-6 px-8"
+              >
+                {services.icon}
+                <span className="text-2xl">{services.title}</span>
+                <p className="text-bg">{services.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

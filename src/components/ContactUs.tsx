@@ -3,12 +3,12 @@ import React from "react";
 const ContactUs = () => {
   return (
     <>
-      <section className="bg-gradient-to-b to-[#1268CE] from-[#05317A] h-[400px]">
-        <div className="container mx-auto py-20 px-6 justify-between flex space-y-6">
-          <div className="w-2/4">
+      <section className="bg-gradient-to-b to-[#1268CE] from-[#05317A] md:h-[400px]">
+        <div className="container mx-auto py-20 px-6 justify-between flex flex-col md:flex-row space-y-6">
+          <div className="md:w-3/4">
             <p className="font-thin">Connect with CoreWeave</p>
-            <h2 className="text-7xl font-semibold mb-4 text-white">
-              Ready to start your digital journey?
+            <h2 className="md:text-7xl text-5xl font-semibold mb-4 text-white md:mb-6">
+              Ready to start your digital journey ?
             </h2>
             <div className="">
               <p className="font-thin text-white flex flex-col">
